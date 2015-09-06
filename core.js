@@ -1,4 +1,4 @@
-var canvas, ctx, mouse, midP;
+var canvas, ctx, midP;
 
 window.onload = function () {
 	//Stuff
@@ -8,8 +8,7 @@ window.onload = function () {
 	ctx = canvas.getContext('2d');
 
     midP = {x : Math.round(canvas.width / 2), y : Math.round(canvas.height / 2)};
-    mouse = {coords: {x: midP.x, y: midP.y}, down: false};
-
+   
 
 
     window.onresize = function(event) {
@@ -20,24 +19,7 @@ window.onload = function () {
 		midP.y = Math.round(canvas.height / 2);
 	};
 
-    canvas.addEventListener('mousemove', function(evt) {
-        function getMousePos(canvas, evt) {
-            var rect = canvas.getBoundingClientRect();
-            return {
-              x: evt.clientX - rect.left,
-              y: evt.clientY - rect.top
-            };
-        }
-        
-        mouse.coords = getMousePos(canvas, evt);
-    }, false);
-
-    function mouseUpLeave(event) {
-        mouse.down = false;
-    }
-    canvas.addEventListener('mouseup', mouseUpLeave, false);
-    canvas.addEventListener('mouseleave', mouseUpLeave, false);
-    
+    setup();
     ///////////////////
     tick();
     ///////////////////
@@ -46,7 +28,7 @@ window.onload = function () {
 function tick() {
     
     //Do cool stuff
-    
+    console.log(mouse);
 
     
     requestAnimationFrame(tick);
