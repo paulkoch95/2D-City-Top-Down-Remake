@@ -1,6 +1,6 @@
 var canvas, ctx, midP,
 tiles, sprites,
-MAP_WIDTH = 64, MAP_HEIGHT = 64, GRUND_TYPES = {grass: 0, stone: 1}, BUILDING_TYPES;
+MAP_WIDTH = 10, MAP_HEIGHT = 10, GROUND_TYPES = {grass: 0, stone: 1}, BUILDING_TYPES;
 
 window.onload = function () {
 	//Stuff
@@ -27,7 +27,7 @@ window.onload = function () {
     for(var x = 0; x < MAP_WIDTH; x++) {
         tiles.push([]);
         for(var y = 0; y < MAP_HEIGHT; y++) {
-            tiles[x].push({ground: GRUND_TYPES.grass});
+            tiles[x].push({ground: GROUND_TYPES.grass});
         }
     }
 
@@ -42,7 +42,7 @@ window.onload = function () {
 function tick() {
     //Do cool stuff
     //console.log(mouse);
-
+    render.draw();
     
     requestAnimationFrame(tick);
 }

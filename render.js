@@ -12,10 +12,11 @@ render.clear = function() {
 }
 
 render.draw = function() {
-    for(var x = Math.floor(camera.offset.x / TILE_SIZE); x < Math.ceil((camera.offset.x + canvas.width) / TILE_SIZE); x++) {
-        for(var y = Math.floor(camera.offset.y / TILE_SIZE); y < Math.ceil((camera.offset.y + canvas.height) / TILE_SIZE); y++) {
+	this.clear();
+    for(var x = Math.max(Math.floor(camera.offset.x / (TILE_SIZE * camera.zoom)), 0); x < Math.min(Math.ceil((camera.offset.x + canvas.width) / (TILE_SIZE * camera.zoom)), MAP_WIDTH); x++) {
+        for(var y = Math.max(Math.floor(camera.offset.y / (TILE_SIZE * camera.zoom)), 0); y < Math.min(Math.ceil((camera.offset.y + canvas.height) / (TILE_SIZE * camera.zoom)), MAP_HEIGHT); y++) {
             ctx.strokeStyle = "red";
-            ctx.strokeRect(x * TILE_SIZE - camera.offset.x + 4, y * TILE_SIZE - camera.offset.y + 4, TILE_SIZE - 4, TILE_SIZE - 4);
+            ctx.strokeRect(x * TILE_SIZE * camera.zoom - camera.offset.x + 4, y * TILE_SIZE * camera.zoom - camera.offset.y + 4, TILE_SIZE * camera.zoom - 4, TILE_SIZE * camera.zoom - 4);
         }
     }
 };

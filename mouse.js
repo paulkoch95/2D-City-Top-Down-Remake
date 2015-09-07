@@ -32,19 +32,26 @@ mouse.setup = function() {
     //Mouse Click/Wheel: -TODO!
     
     window.onkeydown = function(event){
+        console.log(event.keyCode);
         switch(event.keyCode){
             case 37: 
-                camera.offset.x -= 1;
+                camera.offset.x -= 2;
+                break;
             case 39:
-                camera.offset.x+=1;
+                camera.offset.x+=2;
+                break;
             case 38:
-                camera.offset.y-=1;
+                camera.offset.y-=2;
+                break;
             case 40:
-                camera.offset.y+=1;
-            case 171:
+                camera.offset.y+=2;
+                break;
+            case 187:
                 camera.zoom +=0.2;
-            case 173:
+                break;
+            case 189:
                 camera.zoom-=0.2;
+                break;
         }
     }
     //
