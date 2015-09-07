@@ -23,6 +23,7 @@ window.onload = function () {
 
 
     //Fill tiles with grass:
+    tiles = [];
     for(var x = 0; x < MAP_WIDTH; x++) {
         tiles.push([]);
         for(var y = 0; y < MAP_HEIGHT; y++) {
