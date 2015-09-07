@@ -1,11 +1,10 @@
-var mouse;
+var mouse = {};
 
 
-function setup(initialPosition) {
+mouse.setup = function() {
     mouse = {coords: {x: midP.x, y: midP.y}, lastCoords: {x: midP.x, y: midP.y}, down: false};
 
-
-
+    //Mouse Move:
     canvas.addEventListener('mousemove', function(evt) {
         var rect = canvas.getBoundingClientRect();
         mouse.lastCoords.x = mouse.coords.x;
@@ -15,10 +14,31 @@ function setup(initialPosition) {
     }, false);
 
 
+    //Mouse Leave/Up:
     function mouseUpLeaveHandler(event) {
         mouse.down = false;
     }
     canvas.addEventListener('mouseup', mouseUpLeaveHandler, false);
     canvas.addEventListener('mouseleave', mouseUpLeaveHandler, false);
+
+
+    //Mouse Down:
+    canvas.addEventListener('mousedown', function(evt) {
+        mouse.down = true;
+        
+    }, false);
+
+
+    //Mouse Click/Wheel: -TODO!
+    
+    //canvas.addEventListener('click', function(evt) {
+    //
+    //}, false);
+    //
+    //function mouseWheelHandler(evt) {
+    //
+    //}
+    //canvas.addEventListener("DOMMouseScroll", mouseWheelHandler, false);
+    //canvas.addEventListener('mousewheel', mouseWheelHandler, false);
     
 };
