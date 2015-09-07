@@ -5,6 +5,19 @@ TILE_SIZE = 32;
 
 render.setup = function() {
     camera = {offset: {x: 0, y: 0}, zoom: 1};
+    camera.changeZoom = function(z) {
+
+    	camera.zoom += z;
+    	//TODO!
+    	//camera.offset.x += (z / camera.zoom) * mouse.coords.x;
+    	//camera.offset.y += (z / camera.zoom) * mouse.coords.y;
+    };
+    camera.move = function(x, y) {
+    	if(!(camera.offset >= (1/2) * TILE_SIZE * camera.zoom * MAP_WIDTH && x <= 0)) {
+    		camera.offset.x += x;
+    	}
+    	camera.offset.y += y;
+    };
 };
 
 render.clear = function() {
@@ -22,9 +35,10 @@ render.draw = function() {
         	var y = Math.max(Math.floor(camera.offset.y / (TILE_SIZE * camera.zoom)), 0);
         	y < Math.min(Math.ceil((camera.offset.y + canvas.height) / (TILE_SIZE * camera.zoom)), MAP_HEIGHT);
         	y++) {
-        	
+
             ctx.strokeStyle = "blue";
             ctx.strokeRect(x * TILE_SIZE * camera.zoom - camera.offset.x + 4, y * TILE_SIZE * camera.zoom - camera.offset.y + 4, TILE_SIZE * camera.zoom - 4, TILE_SIZE * camera.zoom - 4);
         }
     }
 };
+

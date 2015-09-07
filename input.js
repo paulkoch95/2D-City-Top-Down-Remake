@@ -11,6 +11,11 @@ mouse.setup = function() {
         mouse.lastCoords.y = mouse.coords.y;
         mouse.coords.x = evt.clientX - rect.left;
         mouse.coords.y = evt.clientY - rect.top;
+
+        if(mouse.down) {
+            camera.move(mouse.lastCoords.x - mouse.coords.x, mouse.lastCoords.y - mouse.coords.y);
+        }
+
     }, false);
 
 
@@ -35,31 +40,31 @@ mouse.setup = function() {
         console.log(event.keyCode);
         switch(event.keyCode){
             case 37: 
-                camera.offset.x -= 2;
+                camera.move(-2, 0);
                 break;
             case 39:
-                camera.offset.x+=2;
+                camera.move(2, 0);
                 break;
             case 38:
-                camera.offset.y-=2;
+                camera.move(0, -2);
                 break;
             case 40:
-                camera.offset.y+=2;
+                camera.move(0, 2);
                 break;
             case 187:
-                camera.zoom +=0.2;
+                camera.changeZoom(0.2);
                 break;
             case 189:
-                camera.zoom-=0.2;
+                camera.changeZoom(-0.2);
                 break;
         }
     }
-    //
-    //function mouseWheelHandler(evt) {
-    //
-    //}
-    //canvas.addEventListener("DOMMouseScroll", mouseWheelHandler, false);
-    //canvas.addEventListener('mousewheel', mouseWheelHandler, false);
+    
+    function mouseWheelHandler(evt) {
+        camera.changeZoom(Math.min(Math.max(evt.wheelDelta, -0.2), 0.2));
+    }
+    canvas.addEventListener("DOMMouseScroll", mouseWheelHandler, false);
+    canvas.addEventListener('mousewheel', mouseWheelHandler, false);
     
 };
 mouse.checkRect = function(rectX,rectY,rectWidth,rectHeight){

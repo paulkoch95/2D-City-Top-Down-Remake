@@ -119,3 +119,6 @@ function mixColors(col1, col2, pos) {
     return {col: {r: nR, g: nG, b: nB, a: nA},
             string: "rgba(" + String(nR) + ", " + String(nG) + ", " + String(nB) + ", "  + String(nA) + ")"};
 }
+
+
+function sign(x) { return x > 0 ? 1 : x < 0 ? -1 : 0; }
