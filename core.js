@@ -8,6 +8,9 @@ window.onload = function () {
 	canvas.height = window.innerHeight;
 	canvas.width = window.innerWidth;
 	ctx = canvas.getContext('2d');
+    ctx.webkitImageSmoothingEnabled = false;
+    ctx.mozImageSmoothingEnabled = false;
+    ctx.imageSmoothingEnabled = false;
     midP = {x : Math.round(canvas.width / 2), y : Math.round(canvas.height / 2)};
     window.onresize = function(event) {
 		//Change variables when the window is resized

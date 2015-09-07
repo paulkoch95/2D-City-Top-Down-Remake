@@ -1,9 +1,11 @@
 var render = {}, 
 camera,
 TILE_SIZE = 32;
+var TILE_SHEET = new Image();
 
 
 render.setup = function() {
+    TILE_SHEET.src = "tilesheet.png"
     camera = {offset: {x: 0, y: 0}, zoom: 1};
     camera.changeZoom = function(z) {
 
@@ -30,6 +32,7 @@ render.clear = function() {
 }
 
 render.draw = function() {
+    
 	this.clear();
     for(
     	var x = Math.max(Math.floor(camera.offset.x / (TILE_SIZE * camera.zoom)), 0);
@@ -41,8 +44,9 @@ render.draw = function() {
         	y < Math.min(Math.ceil((camera.offset.y + canvas.height) / (TILE_SIZE * camera.zoom)), MAP_HEIGHT);
         	y++) {
 
-            ctx.strokeStyle = "blue";
-            ctx.strokeRect(x * TILE_SIZE * camera.zoom - camera.offset.x + 4, y * TILE_SIZE * camera.zoom - camera.offset.y + 4, TILE_SIZE * camera.zoom - 4, TILE_SIZE * camera.zoom - 4);
+            //ctx.strokeStyle = "blue";
+            //ctx.strokeRect(x * TILE_SIZE * camera.zoom - camera.offset.x + 4, y * TILE_SIZE * camera.zoom - camera.offset.y + 4, TILE_SIZE * camera.zoom - 4, TILE_SIZE * camera.zoom - 4);
+            ctx.drawImage(TILE_SHEET,0,0,TILE_SIZE,TILE_SIZE,x * TILE_SIZE * camera.zoom - camera.offset.x,y * TILE_SIZE * camera.zoom - camera.offset.y,TILE_SIZE*camera.zoom,TILE_SIZE*camera.zoom);
         }
     }
 };
