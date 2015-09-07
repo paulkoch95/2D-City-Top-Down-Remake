@@ -28,7 +28,7 @@ mouse.setup = function() {
         
     }, false);
 
-
+    
     //Mouse Click/Wheel: -TODO!
     
     //canvas.addEventListener('click', function(evt) {
@@ -42,3 +42,10 @@ mouse.setup = function() {
     //canvas.addEventListener('mousewheel', mouseWheelHandler, false);
     
 };
+mouse.checkRect = function(rectX,rectY,rectWidth,rectHeight){
+    if (mouse.coords.x > rectX && mouse.coords.y > rectY)
+        if (mouse.coords.x < rectX+rectWidth && mouse.coords.y < rectY+rectHeight)
+            return true;
+    else
+        return false;
+}
