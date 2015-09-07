@@ -13,10 +13,15 @@ render.setup = function() {
     	//camera.offset.y += (z / camera.zoom) * mouse.coords.y;
     };
     camera.move = function(x, y) {
-    	if(!(camera.offset >= (1/2) * TILE_SIZE * camera.zoom * MAP_WIDTH && x <= 0)) {
+    	if(!(camera.offset.x + x >= (1/2) * TILE_SIZE * camera.zoom * MAP_WIDTH && x >= 0) &&
+    		!(camera.offset.x + x <= - canvas.width + (1/2) * TILE_SIZE * camera.zoom * MAP_WIDTH && x <= 0)) {
     		camera.offset.x += x;
     	}
-    	camera.offset.y += y;
+    	if(!(camera.offset.y + y >= (1/2) * TILE_SIZE * camera.zoom * MAP_HEIGHT && y >= 0) &&
+    		!(camera.offset.y + y <= - canvas.height + (1/2) * TILE_SIZE * camera.zoom * MAP_HEIGHT && y <= 0)) {
+    		camera.offset.y += y;
+    	}
+    	
     };
 };
 
