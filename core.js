@@ -1,6 +1,6 @@
 var canvas, ctx, midP,
 tiles, sprites,
-MAP_WIDTH = 10, MAP_HEIGHT = 10, GROUND_TYPES = {grass: 0, stone: 1}, BUILDING_TYPES;
+MAP_WIDTH = 10, MAP_HEIGHT = 10, GROUND_TYPES = {grass: 0, stone: 1}, BUILDING_TYPES = {emtpy: 0, forest: 1, pylon: 2};
 
 window.onload = function () {
 	//Stuff
@@ -30,7 +30,7 @@ window.onload = function () {
     for(var x = 0; x < MAP_WIDTH; x++) {
         tiles.push([]);
         for(var y = 0; y < MAP_HEIGHT; y++) {
-            tiles[x].push({ground: GROUND_TYPES.grass});
+            tiles[x].push({ground: (Math.random() > 0.25 ? GROUND_TYPES.grass : GROUND_TYPES.stone), building: (Math.random() > 0.9 ? BUILDING_TYPES.pylon : GROUND_TYPES.empty)});
         }
     }
 

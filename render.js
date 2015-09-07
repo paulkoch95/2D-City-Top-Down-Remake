@@ -32,7 +32,37 @@ render.clear = function() {
 }
 
 render.draw = function() {
-    
+
+    function drawTile(x, y) {
+    	var tile = tiles[x][y];
+    	var sx, sy;
+
+    	//Ground:
+    	switch(tile.ground) {
+    		case GROUND_TYPES.grass:
+    			sx = 0;
+    			sy = 0;
+    		break;
+    		case GROUND_TYPES.stone:
+    			sx = 1;
+    			sy = 0;
+    		break;
+    	}
+    	ctx.drawImage(TILE_SHEET,sx * TILE_SIZE,sy * TILE_SIZE,TILE_SIZE,TILE_SIZE,x * TILE_SIZE * camera.zoom - camera.offset.x,y * TILE_SIZE * camera.zoom - camera.offset.y,TILE_SIZE*camera.zoom,TILE_SIZE*camera.zoom);
+
+    	//Building:
+    	switch(tile.building) {
+    		 case BUILDING_TYPES.forest:
+
+    		 break;
+    		 case BUILDING_TYPES.pylon:
+    		 	sx = 15;
+    			sy = 0;
+    		 break;
+    	}
+    	ctx.drawImage(TILE_SHEET,sx * TILE_SIZE,sy * TILE_SIZE,TILE_SIZE,TILE_SIZE,x * TILE_SIZE * camera.zoom - camera.offset.x,y * TILE_SIZE * camera.zoom - camera.offset.y,TILE_SIZE*camera.zoom,TILE_SIZE*camera.zoom);
+    }
+
 	this.clear();
     for(
     	var x = Math.max(Math.floor(camera.offset.x / (TILE_SIZE * camera.zoom)), 0);
@@ -46,8 +76,9 @@ render.draw = function() {
 
             //ctx.strokeStyle = "blue";
             //ctx.strokeRect(x * TILE_SIZE * camera.zoom - camera.offset.x + 4, y * TILE_SIZE * camera.zoom - camera.offset.y + 4, TILE_SIZE * camera.zoom - 4, TILE_SIZE * camera.zoom - 4);
-            ctx.drawImage(TILE_SHEET,0,0,TILE_SIZE,TILE_SIZE,x * TILE_SIZE * camera.zoom - camera.offset.x,y * TILE_SIZE * camera.zoom - camera.offset.y,TILE_SIZE*camera.zoom,TILE_SIZE*camera.zoom);
+            
+            drawTile(x, y);
+           
         }
     }
 };
-
