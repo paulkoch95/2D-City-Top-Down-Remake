@@ -15,14 +15,16 @@ render.setup = function() {
     	//camera.offset.y += (z / camera.zoom) * mouse.coords.y;
     };
     camera.move = function(x, y) {
-    	if(!(camera.offset.x + x >= (1/2) * TILE_SIZE * camera.zoom * MAP_WIDTH && x >= 0) &&
-    		!(camera.offset.x + x <= - canvas.width + (1/2) * TILE_SIZE * camera.zoom * MAP_WIDTH && x <= 0)) {
+    	//Faulty! TODO!
+
+    	//if(!(camera.offset.x + x >= (1/2) * TILE_SIZE * camera.zoom * MAP_WIDTH && x >= 0) &&
+    	//	!(camera.offset.x + x <= - canvas.width + (1/2) * TILE_SIZE * camera.zoom * MAP_WIDTH && x <= 0)) {
     		camera.offset.x += x;
-    	}
-    	if(!(camera.offset.y + y >= (1/2) * TILE_SIZE * camera.zoom * MAP_HEIGHT && y >= 0) &&
-    		!(camera.offset.y + y <= - canvas.height + (1/2) * TILE_SIZE * camera.zoom * MAP_HEIGHT && y <= 0)) {
+    	//}
+    	//if(!(camera.offset.y + y >= (1/2) * TILE_SIZE * camera.zoom * MAP_HEIGHT && y >= 0) &&
+    	//	!(camera.offset.y + y <= - canvas.height + (1/2) * TILE_SIZE * camera.zoom * MAP_HEIGHT && y <= 0)) {
     		camera.offset.y += y;
-    	}
+    	//}
     	
     };
 };
@@ -35,20 +37,28 @@ render.draw = function() {
 
     function drawTile(x, y) {
     	var tile = tiles[x][y];
-    	var sx, sy;
+    	var sx, sy, scol;
 
     	//Ground:
     	switch(tile.ground) {
     		case GROUND_TYPES.grass:
     			sx = 0;
     			sy = 0;
+    			scol = "green";
+
     		break;
     		case GROUND_TYPES.stone:
     			sx = 1;
     			sy = 0;
+    			scol = "gray";
     		break;
     	}
-    	ctx.drawImage(TILE_SHEET,sx * TILE_SIZE,sy * TILE_SIZE,TILE_SIZE,TILE_SIZE,x * TILE_SIZE * camera.zoom - camera.offset.x,y * TILE_SIZE * camera.zoom - camera.offset.y,TILE_SIZE*camera.zoom,TILE_SIZE*camera.zoom);
+    	if (camera.zoom < 0.5) {
+    		ctx.fillStyle = scol;
+    		ctx.fillRect(x * TILE_SIZE * camera.zoom - camera.offset.x,y * TILE_SIZE * camera.zoom - camera.offset.y,TILE_SIZE*camera.zoom,TILE_SIZE*camera.zoom);
+    	} else {
+    		ctx.drawImage(TILE_SHEET,sx * TILE_SIZE,sy * TILE_SIZE,TILE_SIZE,TILE_SIZE,x * TILE_SIZE * camera.zoom - camera.offset.x,y * TILE_SIZE * camera.zoom - camera.offset.y,TILE_SIZE*camera.zoom,TILE_SIZE*camera.zoom);
+    	}
 
     	//Building:
     	switch(tile.building) {
@@ -58,9 +68,14 @@ render.draw = function() {
     		 case BUILDING_TYPES.pylon:
     		 	sx = 15;
     			sy = 0;
+    			scol = "black";
     		 break;
     	}
-    	ctx.drawImage(TILE_SHEET,sx * TILE_SIZE,sy * TILE_SIZE,TILE_SIZE,TILE_SIZE,x * TILE_SIZE * camera.zoom - camera.offset.x,y * TILE_SIZE * camera.zoom - camera.offset.y,TILE_SIZE*camera.zoom,TILE_SIZE*camera.zoom);
+
+    	if(tile.building != BUILDING_TYPES.empty) {
+    		ctx.drawImage(TILE_SHEET, sx * TILE_SIZE, sy * TILE_SIZE,TILE_SIZE,TILE_SIZE,x * TILE_SIZE * camera.zoom - camera.offset.x,y * TILE_SIZE * camera.zoom - camera.offset.y,TILE_SIZE*camera.zoom,TILE_SIZE*camera.zoom);
+    	}
+    	
     }
 
 	this.clear();
