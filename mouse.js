@@ -31,9 +31,22 @@ mouse.setup = function() {
     
     //Mouse Click/Wheel: -TODO!
     
-    //canvas.addEventListener('click', function(evt) {
-    //
-    //}, false);
+    window.onkeydown = function(event){
+        switch(event.keyCode){
+            case 37: 
+                camera.offset.x -= 1;
+            case 39:
+                camera.offset.x+=1;
+            case 38:
+                camera.offset.y-=1;
+            case 40:
+                camera.offset.y+=1;
+            case 171:
+                camera.zoom +=0.2;
+            case 173:
+                camera.zoom-=0.2;
+        }
+    }
     //
     //function mouseWheelHandler(evt) {
     //
