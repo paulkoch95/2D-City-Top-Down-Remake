@@ -22,11 +22,11 @@ window.onload = function () {
     render.setup();
 
 
-    //Fill tiles with grass: TODO!
+    //Fill tiles with grass:
     for(var x = 0; x < MAP_WIDTH; x++) {
         tiles.push([]);
         for(var y = 0; y < MAP_HEIGHT; y++) {
-            tiles[y].push({ground: GRUND_TYPES.grass});
+            tiles[x].push({ground: GRUND_TYPES.grass});
         }
     }
 
