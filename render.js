@@ -7,9 +7,9 @@ var TILE_SHEET = new Image();
 render.setup = function() {
     TILE_SHEET.src = "tilesheet.png"
     camera = {offset: {x: 0, y: 0}, zoom: 1};
-    camera.changeZoom = function(z) {
+    camera.changeZoom = function(factor) {
 
-    	camera.zoom += z;
+    	camera.zoom *= factor;
     	//TODO!
     	//camera.offset.x += (z / camera.zoom) * mouse.coords.x;
     	//camera.offset.y += (z / camera.zoom) * mouse.coords.y;

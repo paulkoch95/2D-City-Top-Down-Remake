@@ -52,16 +52,16 @@ mouse.setup = function() {
                 camera.move(0, 2);
                 break;
             case 187:
-                camera.changeZoom(0.2);
+                camera.changeZoom(1.2);
                 break;
             case 189:
-                camera.changeZoom(-0.2);
+                camera.changeZoom(1/1.2);
                 break;
         }
     }
     
     function mouseWheelHandler(evt) {
-        camera.changeZoom(Math.min(Math.max(evt.wheelDelta, -0.2), 0.2));
+        camera.changeZoom(Math.min(Math.max(evt.wheelDelta, 1/1.2), 1.2));
     }
     canvas.addEventListener("DOMMouseScroll", mouseWheelHandler, false);
     canvas.addEventListener('mousewheel', mouseWheelHandler, false);

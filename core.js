@@ -30,7 +30,7 @@ window.onload = function () {
     for(var x = 0; x < MAP_WIDTH; x++) {
         tiles.push([]);
         for(var y = 0; y < MAP_HEIGHT; y++) {
-            tiles[x].push({ground: (Math.random() > 0.25 ? GROUND_TYPES.grass : GROUND_TYPES.stone), building: (Math.random() > 0.9 ? BUILDING_TYPES.pylon : GROUND_TYPES.empty)});
+            tiles[x].push({ground: (Math.random() > 0.25 ? GROUND_TYPES.grass : GROUND_TYPES.stone), building: (Math.random() > 0.9 ? BUILDING_TYPES.pylon : GROUND_TYPES.empty), stateData: {}});
         }
     }
 
