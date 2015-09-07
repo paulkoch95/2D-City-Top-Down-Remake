@@ -13,9 +13,17 @@ render.clear = function() {
 
 render.draw = function() {
 	this.clear();
-    for(var x = Math.max(Math.floor(camera.offset.x / (TILE_SIZE * camera.zoom)), 0); x < Math.min(Math.ceil((camera.offset.x + canvas.width) / (TILE_SIZE * camera.zoom)), MAP_WIDTH); x++) {
-        for(var y = Math.max(Math.floor(camera.offset.y / (TILE_SIZE * camera.zoom)), 0); y < Math.min(Math.ceil((camera.offset.y + canvas.height) / (TILE_SIZE * camera.zoom)), MAP_HEIGHT); y++) {
-            ctx.strokeStyle = "red";
+    for(
+    	var x = Math.max(Math.floor(camera.offset.x / (TILE_SIZE * camera.zoom)), 0);
+    	x < Math.min(Math.ceil((camera.offset.x + canvas.width) / (TILE_SIZE * camera.zoom)), MAP_WIDTH);
+    	x++) {
+
+        for(
+        	var y = Math.max(Math.floor(camera.offset.y / (TILE_SIZE * camera.zoom)), 0);
+        	y < Math.min(Math.ceil((camera.offset.y + canvas.height) / (TILE_SIZE * camera.zoom)), MAP_HEIGHT);
+        	y++) {
+        	
+            ctx.strokeStyle = "blue";
             ctx.strokeRect(x * TILE_SIZE * camera.zoom - camera.offset.x + 4, y * TILE_SIZE * camera.zoom - camera.offset.y + 4, TILE_SIZE * camera.zoom - 4, TILE_SIZE * camera.zoom - 4);
         }
     }
