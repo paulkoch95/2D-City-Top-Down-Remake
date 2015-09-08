@@ -1,3 +1,7 @@
+///////////
+//CORE.JS//
+///////////
+
 var canvas, ctx, midP,
 tiles, sprites,
 MAP_WIDTH = 64, MAP_HEIGHT = 64, GROUND_TYPES = {grass: 0, stone: 1}, BUILDING_TYPES = {emtpy: 0, forest: 1, pylon: 2};

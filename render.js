@@ -5,8 +5,8 @@ var TILE_SHEET = new Image();
 
 
 render.setup = function() {
-    TILE_SHEET.src = "tilesheet.png"
-    camera = {offset: {x: 0, y: 0}, zoom: 1};
+    TILE_SHEET.src = "tilesheet.png" //Image which contains all tilesImages
+    camera = {offset: {x: 0, y: 0}, zoom: 1};//Initial offset and zoom level
     camera.changeZoom = function(factor) {
 
     	camera.zoom *= factor;
@@ -40,7 +40,7 @@ render.draw = function() {
     	var sx, sy, scol;
 
     	//Ground:
-    	switch(tile.ground) {
+    	switch(tile.ground) {//Define which tiles should be drawn form the tileSheet and define its LOD Color 
     		case GROUND_TYPES.grass:
     			sx = 0;
     			sy = 0;

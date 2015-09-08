@@ -13,7 +13,7 @@ mouse.setup = function() {
         mouse.coords.y = evt.clientY - rect.top;
 
         if(mouse.down) {
-            camera.move(mouse.lastCoords.x - mouse.coords.x, mouse.lastCoords.y - mouse.coords.y);
+            camera.move(mouse.lastCoords.x - mouse.coords.x, mouse.lastCoords.y - mouse.coords.y);//Move Camera when left mouse boutton is pressed and the mouse dragged
         }
 
     }, false);
@@ -40,16 +40,16 @@ mouse.setup = function() {
         console.log(event.keyCode);
         switch(event.keyCode){
             case 37: 
-                camera.move(-2, 0);
+                camera.move(-2, 0);//Move Cam Left
                 break;
             case 39:
-                camera.move(2, 0);
+                camera.move(2, 0);//Move Cam Right
                 break;
             case 38:
-                camera.move(0, -2);
+                camera.move(0, -2);//Move Cam Up
                 break;
             case 40:
-                camera.move(0, 2);
+                camera.move(0, 2);//Move Cam Down
                 break;
             case 187:
                 camera.changeZoom(1.2);
@@ -61,7 +61,7 @@ mouse.setup = function() {
     }
     
     function mouseWheelHandler(evt) {
-        camera.changeZoom(Math.min(Math.max(evt.wheelDelta, 1/1.2), 1.2));
+        camera.changeZoom(Math.min(Math.max(evt.wheelDelta, 1/1.2), 1.2));//Call camera zoom function
     }
     canvas.addEventListener("DOMMouseScroll", mouseWheelHandler, false);
     canvas.addEventListener('mousewheel', mouseWheelHandler, false);
