@@ -61,7 +61,7 @@ render.draw = function() {
     	}
 
     	//Building:
-    	switch(tile.building) {
+    	switch(tile.building.type) {
     		 case BUILDING_TYPES.forest:
                 sx=2;
                 sy=0;
@@ -74,7 +74,7 @@ render.draw = function() {
     		 break;
     	}
 
-    	if(tile.building != BUILDING_TYPES.empty) {//TODO! (?)
+    	if(tile.building.type != BUILDING_TYPES.empty) {//TODO! (?)
     		ctx.drawImage(TILE_SHEET, sx * TILE_SIZE, sy * TILE_SIZE,TILE_SIZE,TILE_SIZE,x * TILE_SIZE * camera.zoom - camera.offset.x,y * TILE_SIZE * camera.zoom - camera.offset.y,TILE_SIZE*camera.zoom,TILE_SIZE*camera.zoom);
     	}
     	
