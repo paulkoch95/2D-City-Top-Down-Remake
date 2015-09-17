@@ -39,7 +39,7 @@ window.onload = function () {
         tiles.push([]);
         for(var y = 0; y < MAP_HEIGHT; y++) {
             tiles[x].push({
-                ground: (Math.random() * MAP_WIDTH > x ?  GROUND_TYPES.darkStone : (Math.random() > 0.15 ? GROUND_TYPES.grass : GROUND_TYPES.stone)),
+                ground: (Math.random() > 0.15 ? GROUND_TYPES.grass : GROUND_TYPES.stone),
                 building: {type: (Math.random() > 0.50 ? BUILDING_TYPES.empty : BUILDING_TYPES.forest), data: {}}
             });
         }
