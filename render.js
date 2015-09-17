@@ -8,23 +8,16 @@ render.setup = function() {
     TILE_SHEET.src = "tilesheet.png" //Image which contains all tilesImages
     camera = {offset: {x: 0, y: 0}, zoom: 1};//Initial offset and zoom level
 
-    camera.move = function(x, y) {
-    	//Faulty! TODO!
 
-    	//if(!(camera.offset.x + x >= (1/2) * TILE_SIZE * camera.zoom * MAP_WIDTH && x >= 0) &&
-    	//	!(camera.offset.x + x <= - canvas.width + (1/2) * TILE_SIZE * camera.zoom * MAP_WIDTH && x <= 0)) {
-    		camera.offset.x += x;
-    	//}
-    	//if(!(camera.offset.y + y >= (1/2) * TILE_SIZE * camera.zoom * MAP_HEIGHT && y >= 0) &&
-    	//	!(camera.offset.y + y <= - canvas.height + (1/2) * TILE_SIZE * camera.zoom * MAP_HEIGHT && y <= 0)) {
-    		camera.offset.y += y;
-    	//}
+    //TODO: Smooth translations
+    camera.move = function(x, y) {
+    	camera.offset.x = Math.min(Math.max(camera.offset.x + x, 0), TILE_SIZE * camera.zoom * MAP_WIDTH - canvas.width);
+    	camera.offset.y = Math.min(Math.max(camera.offset.y + y, 0), TILE_SIZE * camera.zoom * MAP_WIDTH - canvas.height);
     	
     };
     camera.changeZoom = function(factor) {
-
+        //TODO: Min/Max zoom level -> boundaries!
         camera.zoom *= factor;
-        //TODO!
         camera.move(sign(factor) * (factor - 1) * (mouse.coords.x + camera.offset.x), sign(factor) * (factor - 1) * (mouse.coords.y + camera.offset.y));
     };
 };
