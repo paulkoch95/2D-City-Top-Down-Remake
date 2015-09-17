@@ -7,13 +7,7 @@ var TILE_SHEET = new Image();
 render.setup = function() {
     TILE_SHEET.src = "tilesheet.png" //Image which contains all tilesImages
     camera = {offset: {x: 0, y: 0}, zoom: 1};//Initial offset and zoom level
-    camera.changeZoom = function(factor) {
 
-    	camera.zoom *= factor;
-    	//TODO!
-    	//camera.offset.x += (z / camera.zoom) * mouse.coords.x;
-    	//camera.offset.y += (z / camera.zoom) * mouse.coords.y;
-    };
     camera.move = function(x, y) {
     	//Faulty! TODO!
 
@@ -26,6 +20,12 @@ render.setup = function() {
     		camera.offset.y += y;
     	//}
     	
+    };
+    camera.changeZoom = function(factor) {
+
+        camera.zoom *= factor;
+        //TODO!
+        camera.move(sign(factor) * (factor - 1) * (mouse.coords.x + camera.offset.x), sign(factor) * (factor - 1) * (mouse.coords.y + camera.offset.y));
     };
 };
 
