@@ -17,5 +17,15 @@ body {
 	width: 100%;
 	height: 100%;
 	position: absolute;
+
 }
 
+#overlay {
+	pointer-events: none;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	box-shadow: inset 0 0 150px rgba(0, 0, 0, 0.4);
+}
