@@ -44,16 +44,16 @@ render.draw = function() {
     		case GROUND_TYPES.grass:
     			sx = 0;
     			sy = 0;
-    			scol = "green";
+    			scol = "green"; //TODO!
 
     		break;
     		case GROUND_TYPES.stone:
     			sx = 1;
     			sy = 0;
-    			scol = "gray";
+    			scol = "gray"; //TODO!
     		break;
     	}
-    	if (camera.zoom < 0.5) {
+    	if (camera.zoom < 0.5) {//TODO!
     		ctx.fillStyle = scol;
     		ctx.fillRect(x * TILE_SIZE * camera.zoom - camera.offset.x,y * TILE_SIZE * camera.zoom - camera.offset.y,TILE_SIZE*camera.zoom,TILE_SIZE*camera.zoom);
     	} else {
@@ -74,7 +74,7 @@ render.draw = function() {
     		 break;
     	}
 
-    	if(tile.building != BUILDING_TYPES.empty) {
+    	if(tile.building != BUILDING_TYPES.empty) {//TODO! (?)
     		ctx.drawImage(TILE_SHEET, sx * TILE_SIZE, sy * TILE_SIZE,TILE_SIZE,TILE_SIZE,x * TILE_SIZE * camera.zoom - camera.offset.x,y * TILE_SIZE * camera.zoom - camera.offset.y,TILE_SIZE*camera.zoom,TILE_SIZE*camera.zoom);
     	}
     	
