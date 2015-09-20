@@ -61,8 +61,8 @@ render.draw = function() {
     	//Building:
     	switch(tile.building.type) {
     		 case BUILDING_TYPES.forest:
-                sx=0;
-                sy=1;
+                sx=1;
+                sy=3;
                 scol = "green";
     		 break;
     		 case BUILDING_TYPES.pylon:
