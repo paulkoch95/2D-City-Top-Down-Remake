@@ -1,0 +1,3 @@
+worldgen.generate = function(){
+    
+}
