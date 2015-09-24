@@ -61,8 +61,46 @@ render.draw = function(map) {
     	//Building:
     	switch(tile.building.type) {
     		 case BUILDING_TYPES.forest:
-                sx=1;
-                sy=3;
+                switch(tile.building.data.density) {
+                    case 1:
+                         switch(tile.building.data.variation) {
+                             case 0:
+                                 sx=4;
+                                 sy=1;
+                             break;
+                             case 1:
+                                 sx=5;
+                                 sy=1;
+                             break;
+                         }
+                    break;
+
+                    case 2:
+                         switch(tile.building.data.variation) {
+                             case 0:
+                                 sx=2;
+                                 sy=1;
+                             break;
+                             case 1:
+                                 sx=3;
+                                 sy=1;
+                             break;
+                         }
+                    break;
+
+                    case 3:
+                         switch(tile.building.data.variation) {
+                             case 0:
+                                 sx=0;
+                                 sy=1;
+                             break;
+                             case 1:
+                                 sx=1;
+                                 sy=1;
+                             break;
+                         }
+                    break;
+                }
                 scol = "green";
     		 break;
     		 case BUILDING_TYPES.pylon:

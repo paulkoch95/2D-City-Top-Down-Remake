@@ -14,4 +14,7 @@ tile_forest.update = function(map, x, y, recursive) {
 		}
 	}
 	map.tiles[x][y].building.data.neighbours = neighbours;
+	map.tiles[x][y].building.data.density = Math.min(Math.round(0.5 + 3 * neighbours / 8), 8); //TODO: Seed!
+	map.tiles[x][y].building.data.variation = Math.round(Math.random() * 1); //TODO: Seed!
+
 };
