@@ -1,23 +1,36 @@
 var render = {}, 
 camera,
+maxZoom, minZoom,
 TILE_SIZE = 32;
 var TILE_SHEET = new Image();
 
 
-render.setup = function() {
+render.setup = function(map) {
     TILE_SHEET.src = "tilesheet.png" //Image which contains all tilesImages
-    camera = {offset: {x: 0, y: 0}, zoom: 1};//Initial offset and zoom level
+    camera = {offset: {x: 0, y: 0}, zoom: 1, enableBoundaries: true};//Initial offset and zoom level
+
+    maxZoom = Math.min(canvas.width/(TILE_SIZE * 2), canvas.height/(TILE_SIZE * 2));
+    minZoom = Math.max(canvas.width/(TILE_SIZE * map.WIDTH), canvas.height/(TILE_SIZE * map.HEIGHT));
+
 
 
     //TODO: Smooth translations
     camera.move = function(x, y) {
-    	camera.offset.x = Math.min(Math.max(camera.offset.x + x, 0), TILE_SIZE * camera.zoom * map.WIDTH - canvas.width);
-    	camera.offset.y = Math.min(Math.max(camera.offset.y + y, 0), TILE_SIZE * camera.zoom * map.WIDTH - canvas.height);
+        if(camera.enableBoundaries) {
+    	   camera.offset.x = Math.min(Math.max(camera.offset.x + x, 0), TILE_SIZE * camera.zoom * map.WIDTH - canvas.width);
+    	   camera.offset.y = Math.min(Math.max(camera.offset.y + y, 0), TILE_SIZE * camera.zoom * map.WIDTH - canvas.height);
+        } else {
+            camera.offset.x += x;
+            camera.offset.y += y;
+        }
     	
     };
     camera.changeZoom = function(factor) {
         //TODO: Min/Max zoom level -> boundaries!
-        camera.zoom *= factor;
+        if(camera.enableBoundaries) {
+            factor = Math.max(Math.min(factor, maxZoom / camera.zoom), minZoom / camera.zoom);
+        }
+        camera.zoom = Math.max(Math.min(camera.zoom * factor, maxZoom), minZoom);
         camera.move(sign(factor) * (factor - 1) * (mouse.coords.x + camera.offset.x), sign(factor) * (factor - 1) * (mouse.coords.y + camera.offset.y));
     };
 };

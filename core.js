@@ -27,17 +27,19 @@ window.onload = function () {
         ctx.webkitImageSmoothingEnabled = false;
         ctx.mozImageSmoothingEnabled = false;
         ctx.imageSmoothingEnabled = false;
+        //TODO: reset camera
 	};
-
-
-    mouse.setup();
-    render.setup();
 
 
     map = {
         WIDTH: 1024, HEIGHT: 1024, BORDER_THICKNESS: 5,
         tiles: [], sprites: []
     };
+
+
+    mouse.setup();
+    render.setup(map);
+
 
 
     worldgen.createMap(map);
