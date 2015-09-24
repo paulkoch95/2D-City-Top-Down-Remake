@@ -6,7 +6,7 @@ worldgen.createMap = function(map) {
         map.tiles.push([]);
         for(var y = 0; y < map.HEIGHT; y++) {
             map.tiles[x].push({
-                ground: (Math.random() > 0.15 ? GROUND_TYPES.grass : GROUND_TYPES.stone),
+                ground: (Math.random() > 0.15 ? GROUND_TYPES.grass : GROUND_TYPES.grass),
                 building: {type: (Math.random() > 0.50 ? BUILDING_TYPES.empty : BUILDING_TYPES.forest), data: {}}
             });
         }

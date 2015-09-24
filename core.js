@@ -35,7 +35,7 @@ window.onload = function () {
 
 
     map = {
-        WIDTH: 64, HEIGHT: 64, BORDER_THICKNESS: 5,
+        WIDTH: 1024, HEIGHT: 1024, BORDER_THICKNESS: 5,
         tiles: [], sprites: []
     };
 
