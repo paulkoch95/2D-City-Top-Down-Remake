@@ -11,16 +11,17 @@ worldgen.createMap = function(map) {
             });
         }
     }
+    tileLogic.updateEverything(map);
     for(var x = 0; x < map.WIDTH; x++) {
         for(var y = 0; y < map.HEIGHT; y++) {
             if (x > 0 && y > 0 && x<map.WIDTH - 1 && y<map.HEIGHT - 1){
-                if(map.tiles[x][y].building.type == BUILDING_TYPES.forest && map.tiles[x-1][y].building.type != BUILDING_TYPES.forest && map.tiles[x+1][y].building.type != BUILDING_TYPES.forest && map.tiles[x][y+1].building.type != BUILDING_TYPES.forest && map.tiles[x][y-1].building.type != BUILDING_TYPES.forest){
+                if (map.tiles[x][y].building.data.neighbours < 4){
                    map.tiles[x][y].building = {type:BUILDING_TYPES.empty,data:{}}; 
                 }
+                 
                 //map.tiles[x][y].building = {type:BUILDING_TYPES.forest,data:{}};
-                
             }
         }
     }
-    tileLogic.updateEverything(map);
+   tileLogic.updateEverything(map);
 }
