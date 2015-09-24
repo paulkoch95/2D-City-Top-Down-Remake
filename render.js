@@ -84,6 +84,12 @@ render.draw = function(map) {
             ctx.fillRect(Math.round(x * TILE_SIZE * camera.zoom - camera.offset.x), Math.round(y * TILE_SIZE * camera.zoom - camera.offset.y), Math.round(TILE_SIZE*camera.zoom), Math.round(TILE_SIZE*camera.zoom));
     	}
 
+        //Mouse-Hover. Just experimental as well. TODO!
+        if(x == mouse.tile.x && y == mouse.tile.y) {
+             ctx.fillStyle = "rgba(255, 255, 255, 0.15)";
+            ctx.fillRect(Math.round(x * TILE_SIZE * camera.zoom - camera.offset.x), Math.round(y * TILE_SIZE * camera.zoom - camera.offset.y), Math.round(TILE_SIZE*camera.zoom), Math.round(TILE_SIZE*camera.zoom));
+        }
+
     }
 
 	this.clear();

@@ -24,6 +24,9 @@ window.onload = function () {
 		canvas.width = window.innerWidth;
 		midP.x = Math.round(canvas.width / 2);
 		midP.y = Math.round(canvas.height / 2);
+        ctx.webkitImageSmoothingEnabled = false;
+        ctx.mozImageSmoothingEnabled = false;
+        ctx.imageSmoothingEnabled = false;
 	};
 
 
@@ -37,16 +40,7 @@ window.onload = function () {
     };
 
 
-    //Test World Gen:
-    for(var x = 0; x < map.WIDTH; x++) {
-        map.tiles.push([]);
-        for(var y = 0; y < map.HEIGHT; y++) {
-            map.tiles[x].push({
-                ground: (Math.random() > 0.15 ? GROUND_TYPES.grass : GROUND_TYPES.stone),
-                building: {type: (Math.random() > 0.50 ? BUILDING_TYPES.empty : BUILDING_TYPES.forest), data: {}}
-            });
-        }
-    }
+    worldgen.createMap(map);
 
 
 

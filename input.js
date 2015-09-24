@@ -2,7 +2,7 @@ var mouse = {};
 
 
 mouse.setup = function() {
-    mouse = {coords: {x: midP.x, y: midP.y}, lastCoords: {x: midP.x, y: midP.y}, down: false};
+    mouse = {coords: {x: midP.x, y: midP.y}, lastCoords: {x: midP.x, y: midP.y}, down: false, tile: {x: 0, y: 0}};
 
     //Mouse Move:
     canvas.addEventListener('mousemove', function(evt) {
@@ -11,6 +11,9 @@ mouse.setup = function() {
         mouse.lastCoords.y = mouse.coords.y;
         mouse.coords.x = evt.clientX - rect.left;
         mouse.coords.y = evt.clientY - rect.top;
+
+        mouse.tile.x = Math.floor((mouse.coords.x + camera.offset.x) / (TILE_SIZE * camera.zoom));
+        mouse.tile.y = Math.floor((mouse.coords.y + camera.offset.y) / (TILE_SIZE * camera.zoom));
 
         if(mouse.down) {
             camera.move(mouse.lastCoords.x - mouse.coords.x, mouse.lastCoords.y - mouse.coords.y);//Move Camera when left mouse boutton is pressed and the mouse dragged
@@ -34,7 +37,13 @@ mouse.setup = function() {
     }, false);
 
     
-    //Mouse Click/Wheel: -TODO!
+    //Mouse Click:
+    canvas.addEventListener('click', function(evt) {
+        //Remove, just for debugging:
+        console.log(map.tiles[mouse.tile.x][mouse.tile.y].building.data.neighbours);
+    }, false);
+
+    //Mouse Wheel: -TODO!
     
     window.onkeydown = function(event){
         console.log(event.keyCode);

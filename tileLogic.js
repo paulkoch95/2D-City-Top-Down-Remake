@@ -13,3 +13,11 @@ tileLogic.updateTile = function(map, x, y, recursive) {
         break;
     }
 };
+
+tileLogic.updateEverything = function(map) {
+	for(var x = 0; x < map.WIDTH; x++) {
+        for(var y = 0; y < map.HEIGHT; y++) {
+        	this.updateTile(map, x, y, false);
+        }
+    }
+};
