@@ -30,7 +30,7 @@ render.setup = function(map) {
         if(camera.enableBoundaries) {
             factor = Math.max(Math.min(factor, maxZoom / camera.zoom), minZoom / camera.zoom);
         }
-        camera.zoom = Math.max(Math.min(camera.zoom * factor, maxZoom), minZoom);
+        camera.zoom *= factor;
         camera.move(sign(factor) * (factor - 1) * (mouse.coords.x + camera.offset.x), sign(factor) * (factor - 1) * (mouse.coords.y + camera.offset.y));
     };
 };
