@@ -11,8 +11,8 @@ render.setup = function() {
 
     //TODO: Smooth translations
     camera.move = function(x, y) {
-    	camera.offset.x = Math.min(Math.max(camera.offset.x + x, 0), TILE_SIZE * camera.zoom * MAP_WIDTH - canvas.width);
-    	camera.offset.y = Math.min(Math.max(camera.offset.y + y, 0), TILE_SIZE * camera.zoom * MAP_WIDTH - canvas.height);
+    	camera.offset.x = Math.min(Math.max(camera.offset.x + x, 0), TILE_SIZE * camera.zoom * map.WIDTH - canvas.width);
+    	camera.offset.y = Math.min(Math.max(camera.offset.y + y, 0), TILE_SIZE * camera.zoom * map.WIDTH - canvas.height);
     	
     };
     camera.changeZoom = function(factor) {
@@ -26,10 +26,10 @@ render.clear = function() {
 	ctx.clearRect(0, 0, canvas.width, canvas.height);
 }
 
-render.draw = function() {
+render.draw = function(map) {
 
-    function drawTile(x, y) {
-    	var tile = tiles[x][y];
+    function drawTile(map, x, y) {
+    	var tile = map.tiles[x][y];
     	var sx, sy, scol;
 
     	//Ground:
@@ -78,9 +78,9 @@ render.draw = function() {
 
         //Map-Border:
         //Just experimental. TODO!
-        if(x < BORDER_THICKNESS || x > MAP_WIDTH - BORDER_THICKNESS || y < BORDER_THICKNESS || y > MAP_HEIGHT - BORDER_THICKNESS) {
-            var off = Math.min(x, MAP_WIDTH - x, y, MAP_HEIGHT - y);
-            ctx.fillStyle = "rgba(0, 0, 0, " + (0.7 - 0.4 * (off / BORDER_THICKNESS)) + ")";
+        if(x < map.BORDER_THICKNESS || x > map.WIDTH - map.BORDER_THICKNESS || y < map.BORDER_THICKNESS || y > map.HEIGHT - map.BORDER_THICKNESS) {
+            var off = Math.min(x, map.WIDTH - x, y, map.HEIGHT - y);
+            ctx.fillStyle = "rgba(0, 0, 0, " + (0.7 - 0.4 * (off / map.BORDER_THICKNESS)) + ")";
             ctx.fillRect(Math.round(x * TILE_SIZE * camera.zoom - camera.offset.x), Math.round(y * TILE_SIZE * camera.zoom - camera.offset.y), Math.round(TILE_SIZE*camera.zoom), Math.round(TILE_SIZE*camera.zoom));
     	}
 
@@ -89,18 +89,18 @@ render.draw = function() {
 	this.clear();
     for(
     	var x = Math.max(Math.floor(camera.offset.x / (TILE_SIZE * camera.zoom)), 0);
-    	x < Math.min(Math.ceil((camera.offset.x + canvas.width) / (TILE_SIZE * camera.zoom)), MAP_WIDTH);
+    	x < Math.min(Math.ceil((camera.offset.x + canvas.width) / (TILE_SIZE * camera.zoom)), map.WIDTH);
     	x++) {
 
         for(
         	var y = Math.max(Math.floor(camera.offset.y / (TILE_SIZE * camera.zoom)), 0);
-        	y < Math.min(Math.ceil((camera.offset.y + canvas.height) / (TILE_SIZE * camera.zoom)), MAP_HEIGHT);
+        	y < Math.min(Math.ceil((camera.offset.y + canvas.height) / (TILE_SIZE * camera.zoom)), map.HEIGHT);
         	y++) {
 
             //ctx.strokeStyle = "blue";
             //ctx.strokeRect(x * TILE_SIZE * camera.zoom - camera.offset.x + 4, y * TILE_SIZE * camera.zoom - camera.offset.y + 4, TILE_SIZE * camera.zoom - 4, TILE_SIZE * camera.zoom - 4);
             
-            drawTile(x, y);
+            drawTile(map, x, y);
            
         }
     }

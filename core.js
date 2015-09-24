@@ -3,8 +3,8 @@
 ///////////
 
 var canvas, ctx, midP,
-tiles, sprites,
-MAP_WIDTH = 64, MAP_HEIGHT = 64, BORDER_THICKNESS = 5,
+map,
+
 GROUND_TYPES = {grass: 0, stone: 1, darkStone: 2},
 BUILDING_TYPES = {emtpy: 0, forest: 1, pylon: 2};
 
@@ -31,14 +31,17 @@ window.onload = function () {
     render.setup();
 
 
-    
-    tiles = [];
+    map = {
+        WIDTH: 64, HEIGHT: 64, BORDER_THICKNESS: 5,
+        tiles: [], sprites: []
+    };
+
 
     //Test World Gen:
-    for(var x = 0; x < MAP_WIDTH; x++) {
-        tiles.push([]);
-        for(var y = 0; y < MAP_HEIGHT; y++) {
-            tiles[x].push({
+    for(var x = 0; x < map.WIDTH; x++) {
+        map.tiles.push([]);
+        for(var y = 0; y < map.HEIGHT; y++) {
+            map.tiles[x].push({
                 ground: (Math.random() > 0.15 ? GROUND_TYPES.grass : GROUND_TYPES.stone),
                 building: {type: (Math.random() > 0.50 ? BUILDING_TYPES.empty : BUILDING_TYPES.forest), data: {}}
             });
@@ -56,7 +59,7 @@ window.onload = function () {
 function tick() {
     //Do cool stuff
     //console.log(mouse);
-    render.draw();
+    render.draw(map);
     
     requestAnimationFrame(tick);
 }

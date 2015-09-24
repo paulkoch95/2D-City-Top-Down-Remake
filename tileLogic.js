@@ -5,11 +5,11 @@ tileLogic.setup = function() {
    
 }
 
-tileLogic.updateTile = function(x, y, recursive) {
+tileLogic.updateTile = function(map, x, y, recursive) {
     recursive = recursive || true;
-    switch(tiles[x][y].building.type) {
+    switch(map.tiles[x][y].building.type) {
         case BUILDING_TYPES.forest:
-            tile_forest.update(x, y, recursive);//Call foresTile connective tile algor 
+            tile_forest.update(map, x, y, recursive);//Call foresTile connective tile algor 
         break;
     }
 };

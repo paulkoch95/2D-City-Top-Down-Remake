@@ -1,3 +1,5 @@
-worldgen.generate = function(){
+worldgen = {};
+
+worldgen.createMap = function(map){
     
 }
