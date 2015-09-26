@@ -121,6 +121,10 @@ render.draw = function(map) {
     			sy = 0;
     			scol = "black";
     		 break;
+             case BUILDING_TYPES.river:
+    		 	sx = 0;
+    			sy = 2;
+    		 break;
     	}
 
     	if(tile.building.type != BUILDING_TYPES.empty) {//TODO! (?)
