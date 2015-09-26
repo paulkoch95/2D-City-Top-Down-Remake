@@ -23,5 +23,19 @@ worldgen.createMap = function(map) {
             }
         }
     }
-   tileLogic.updateEverything(map);
+    placeRiver(0,0,30,30,0,40);
+    function placeRiver(x,y,endX,endY,currentLength,length){
+        
+        if(x == endX && y == endY || currentLength==length){
+            return;
+        }else{
+            map.tiles[x][y].building = {type:BUILDING_TYPES.pylon,data:{}};
+            currentLength++;
+            console.log(currentLength);
+            placeRiver((Math.random() < 0.5 ? x+1 : x+0),(Math.random() < 0.5 ? y+1 : y+0),endX,endY,currentLength,length);
+            
+        }
+        
+    }
+    tileLogic.updateEverything(map);
 }
