@@ -23,19 +23,33 @@ worldgen.createMap = function(map) {
             }
         }
     }
-    placeRiver(0,0,30,30,0,40);
-    function placeRiver(x,y,endX,endY,currentLength,length){
-        
-        if(x == endX && y == endY || currentLength==length){
+    //DIRECTIONS!
+    //--|01|--
+    //02|Tl|03
+    //--|04|--
+    placeRiver(0,0,0,20,0.5);
+    function placeRiver(x,y,currentLength,length,direction){
+        if(x==map.WIDTH || y==map.HEIGHT){
             return;
         }else{
-            map.tiles[x][y].building = {type:BUILDING_TYPES.pylon,data:{}};
-            currentLength++;
-            console.log(currentLength);
-            placeRiver((Math.random() < 0.5 ? x+1 : x+0),(Math.random() < 0.5 ? y+1 : y+0),endX,endY,currentLength,length);
-            
+            if(currentLength==length){
+                placeRiver(x,y,0,50,0.2);
+                placeRiver(x,y,0,50,0.7);
+                //placeRiver(x,y+1,0,10,split+=1);
+            }else{
+                if(Math.random()<direction){
+                    map.tiles[x][y].building = {type:BUILDING_TYPES.pylon,data:{}};
+                    currentLength++;
+                    placeRiver(x+1,y,currentLength,length,direction);
+                }else{
+                    map.tiles[x][y].building = {type:BUILDING_TYPES.pylon,data:{}};
+                    currentLength++;
+                    placeRiver(x,y+1,currentLength,length,direction);
+                }
+
+
+            }
         }
-        
     }
     tileLogic.updateEverything(map);
 }
