@@ -116,15 +116,46 @@ render.draw = function(map) {
                 }
                 scol = "green";
     		 break;
+
+
+             case BUILDING_TYPES.river:
+                switch(tile.building.data.direction) {
+                    case 1:
+                         switch(tile.building.data.variation) {
+                             case 0:
+                                 sx = 0;
+                                 sy = 2;
+                             break;
+                             case 1:
+                                 sx=1;
+                                 sy=2;
+                             break;
+                         }
+                    break;
+
+                    case 0:
+                         switch(tile.building.data.variation) {
+                             case 0:
+                                 sx=2;
+                                 sy=2;
+                             break;
+                             case 1:
+                                 sx=3;
+                                 sy=2;
+                             break;
+                         }
+                    break;
+                }
+                scol = "blue";
+             break;
+
+
     		 case BUILDING_TYPES.pylon:
     		 	sx = 15;
     			sy = 0;
     			scol = "black";
     		 break;
-             case BUILDING_TYPES.river:
-    		 	sx = 0;
-    			sy = 2;
-    		 break;
+
     	}
 
     	if(tile.building.type != BUILDING_TYPES.empty) {//TODO! (?)

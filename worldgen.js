@@ -38,11 +38,11 @@ worldgen.createMap = function(map) {
                 //placeRiver(x,y+1,0,10,split+=1);
             }else{
                 if(Math.random()<direction){
-                    map.tiles[x][y].building = {type:BUILDING_TYPES.river,data:{}};
+                    map.tiles[x][y].building = {type:BUILDING_TYPES.river,data:{direction: Math.round(direction), variation: Math.round(1 - (0.7 * Math.random()))}}; // TODO!
                     currentLength++;
                     placeRiver(x+1,y,currentLength,length,direction);
                 }else{
-                    map.tiles[x][y].building = {type:BUILDING_TYPES.river,data:{}};
+                    map.tiles[x][y].building = {type:BUILDING_TYPES.river,data:{direction: Math.round(direction), variation: Math.round(1 - (0.7 * Math.random()))}}; // TODO!
                     currentLength++;
                     placeRiver(x,y+1,currentLength,length,direction);
                 }
