@@ -26,7 +26,7 @@ worldgen.createMap = function(map) {
     
     
     placeRiver(0,0,0,20,0.5);
-    function placeRiver(x,y,currentLength,length,direction){
+    function placeRiver(x,y,currentLength,length,tendency){
         if(x==map.WIDTH || y==map.HEIGHT){
             return;
         }else{
@@ -35,14 +35,14 @@ worldgen.createMap = function(map) {
                 placeRiver(x,y,0,50,0.7);
                 //placeRiver(x,y+1,0,10,split+=1);
             }else{
-                if(Math.random()<direction){
+                if(Math.random()<tendency){
                     map.tiles[x][y].building = {type:BUILDING_TYPES.river,data:{direction: DIRECTIONS.horizontal,variation: Math.round(1 - (0.7 * Math.random()))}}; // TODO!
                     currentLength++;
-                    placeRiver(x+1,y,currentLength,length,direction);
+                    placeRiver(x+1,y,currentLength,length,tendency);
                 }else{
                     map.tiles[x][y].building = {type:BUILDING_TYPES.river,data:{direction: DIRECTIONS.vertical,variation: Math.round(1 - (0.7 * Math.random()))}}; // TODO!
                     currentLength++;
-                    placeRiver(x,y+1,currentLength,length,direction);
+                    placeRiver(x,y+1,currentLength,length,tendency);
                 }
 
 
