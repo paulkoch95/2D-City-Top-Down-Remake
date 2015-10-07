@@ -1,4 +1,4 @@
-worldgen = {};
+var worldgen = {};
 
 worldgen.createMap = function(map) {
     //Test World Gen:
@@ -23,10 +23,8 @@ worldgen.createMap = function(map) {
             }
         }
     }
-    //DIRECTIONS!
-    //--|01|--
-    //02|Tl|03
-    //--|04|--
+    
+    
     placeRiver(0,0,0,20,0.5);
     function placeRiver(x,y,currentLength,length,direction){
         if(x==map.WIDTH || y==map.HEIGHT){
@@ -38,11 +36,11 @@ worldgen.createMap = function(map) {
                 //placeRiver(x,y+1,0,10,split+=1);
             }else{
                 if(Math.random()<direction){
-                    map.tiles[x][y].building = {type:BUILDING_TYPES.river,data:{direction: 1,variation: Math.round(1 - (0.7 * Math.random()))}}; // TODO!
+                    map.tiles[x][y].building = {type:BUILDING_TYPES.river,data:{direction: DIRECTIONS.horizontal,variation: Math.round(1 - (0.7 * Math.random()))}}; // TODO!
                     currentLength++;
                     placeRiver(x+1,y,currentLength,length,direction);
                 }else{
-                    map.tiles[x][y].building = {type:BUILDING_TYPES.river,data:{direction: 0,variation: Math.round(1 - (0.7 * Math.random()))}}; // TODO!
+                    map.tiles[x][y].building = {type:BUILDING_TYPES.river,data:{direction: DIRECTIONS.vertical,variation: Math.round(1 - (0.7 * Math.random()))}}; // TODO!
                     currentLength++;
                     placeRiver(x,y+1,currentLength,length,direction);
                 }

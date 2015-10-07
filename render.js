@@ -120,7 +120,7 @@ render.draw = function(map) {
 
              case BUILDING_TYPES.river:
                 switch(tile.building.data.direction) {
-                    case 1:
+                    case 0:
                          switch(tile.building.data.variation) {
                              case 0:
                                  sx = 0;
@@ -133,7 +133,7 @@ render.draw = function(map) {
                          }
                     break;
 
-                    case 0:
+                    case 1:
                          switch(tile.building.data.variation) {
                              case 0:
                                  sx=2;
