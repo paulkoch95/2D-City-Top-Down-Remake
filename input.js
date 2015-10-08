@@ -40,7 +40,7 @@ mouse.setup = function() {
     //Mouse Click:
     canvas.addEventListener('click', function(evt) {
         //Remove, just for debugging:
-        console.log(map.tiles[mouse.tile.x][mouse.tile.y].building.data.neighbours);
+        console.log(map.tiles[mouse.tile.x][mouse.tile.y]);
     }, false);
 
     //Mouse Wheel: -TODO!
