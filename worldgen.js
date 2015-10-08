@@ -24,7 +24,7 @@ worldgen.createMap = function(map) {
         }
     }
     
-    
+
     placeRiver(0,0,0,20,0.5);
     function placeRiver(x,y,currentLength,length,tendency){
         if(x==map.WIDTH || y==map.HEIGHT){
@@ -46,6 +46,16 @@ worldgen.createMap = function(map) {
                 }
 
 
+            }
+        }
+    }
+    //Defining River Directions
+    for(var x = 0; x < map.WIDTH; x++) {
+        for(var y = 0; y < map.HEIGHT; y++) {
+            if (x > 0 && y > 0 && x<map.WIDTH - 1 && y<map.HEIGHT - 1){
+                if(map.tiles[x][y-1].building.data.direction == DIRECTIONS.vertical && (map.tiles[x+1][y].building.data.direction == DIRECTIONS.horizontal || map.tiles[x+1][y].building.data.direction == DIRECTIONS.vertical)){
+                    map.tiles[x][y].building.data.direction = DIRECTIONS.curve_top_right;
+                }
             }
         }
     }
