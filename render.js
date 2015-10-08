@@ -181,6 +181,19 @@ render.draw = function(map) {
                              break;
                          }
                     break;
+                    case DIRECTIONS.junction_top_right_down:
+                        switch(tile.building.data.variation) {
+                             case 0:
+                                 sx=5;
+                                 sy=2;
+                             break;
+                             case 1:
+                                 sx=5;
+                                 sy=2;
+                             break;
+                         }
+                    break;
+                        
                         
                 }
                 scol = "blue";
