@@ -50,14 +50,21 @@ worldgen.createMap = function(map) {
         }
     }
     //Defining River Directions
-    for(var x = 0; x < map.WIDTH; x++) {
+    function defineDirections(){
+      for(var x = 0; x < map.WIDTH; x++) {
         for(var y = 0; y < map.HEIGHT; y++) {
             if (x > 0 && y > 0 && x<map.WIDTH - 1 && y<map.HEIGHT - 1){
                 if(map.tiles[x][y-1].building.data.direction == DIRECTIONS.vertical && (map.tiles[x+1][y].building.data.direction == DIRECTIONS.horizontal || map.tiles[x+1][y].building.data.direction == DIRECTIONS.vertical)){
                     map.tiles[x][y].building.data.direction = DIRECTIONS.curve_top_right;
                 }
+                if((map.tiles[x-1][y].building.data.direction == DIRECTIONS.horizontal || map.tiles[x-1][y].building.data.direction == DIRECTIONS.curve_top_right) && (map.tiles[x][y+1].building.data.direction == DIRECTIONS.vertical || map.tiles[x][y+1].building.data.direction == DIRECTIONS.curve_top_right)){
+                    map.tiles[x][y].building.data.direction = DIRECTIONS.curve_right_down;
+                }
             }
         }
+      }  
     }
+    defineDirections();
     tileLogic.updateEverything(map);
+    defineDirections();
 }

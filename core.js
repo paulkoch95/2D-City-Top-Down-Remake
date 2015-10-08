@@ -7,7 +7,7 @@ map,
 
 GROUND_TYPES = {grass: 0, stone: 1, darkStone: 2},
 BUILDING_TYPES = {emtpy: 0, forest: 1, pylon: 2, river: 3},
-DIRECTIONS = {horizontal:0,vertical:1,curve_top_right:2,curve_right_down:3};
+DIRECTIONS = {horizontal:0,vertical:1,curve_top_right:2,curve_right_down:3,junction_left_right_down:4,junction_top_right_down:5};
 
 window.onload = function () {
 	//Stuff
