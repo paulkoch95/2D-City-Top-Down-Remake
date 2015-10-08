@@ -1,7 +1,7 @@
-var timing = {}, 
+var timing = {};
 
 
 
 timing.setup = function(map) {
- 
+
 };

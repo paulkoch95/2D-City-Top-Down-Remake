@@ -7,9 +7,14 @@ tileLogic.setup = function() {
 
 tileLogic.updateTile = function(map, x, y, recursive) {
     recursive = recursive || true;
+    switch(map.tiles[x][y].ground.type) {
+        case GROUND_TYPES.stone:
+            tile_ground_stone.update(map, x, y, recursive);
+        break;
+    }
     switch(map.tiles[x][y].building.type) {
         case BUILDING_TYPES.forest:
-            tile_forest.update(map, x, y, recursive);//Call foresTile connective tile algor 
+            tile_building_forest.update(map, x, y, recursive);//Call foresTile connective tile algor 
         break;
     }
 };

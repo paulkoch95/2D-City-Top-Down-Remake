@@ -1,7 +1,7 @@
-var tile_forest = {};
+var tile_building_forest = {};
 //MUCH TODO!
 
-tile_forest.update = function(map, x, y, recursive) {
+tile_building_forest.update = function(map, x, y, recursive) {
 	//Count neighbours
 	var neighbours = 0;
 	for(var ix = Math.max(0, x - 1); ix < Math.min(map.WIDTH, x + 2); ix++) {
@@ -15,6 +15,6 @@ tile_forest.update = function(map, x, y, recursive) {
 	}
 	map.tiles[x][y].building.data.neighbours = neighbours;
 	map.tiles[x][y].building.data.density = Math.min(Math.round(0.5 + 3 * neighbours / 8), 8); //TODO: Seed!
-	map.tiles[x][y].building.data.variation = Math.round(Math.random() * 1); //TODO: Seed!
+
 
 };

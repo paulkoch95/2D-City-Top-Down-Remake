@@ -46,7 +46,7 @@ render.draw = function(map) {
     	var sx, sy, scol;
 
     	//Ground:
-    	switch(tile.ground) {//Define which tiles should be drawn form the tileSheet and define its LOD Color 
+    	switch(tile.ground.type) {//Define which tiles should be drawn form the tileSheet and define its LOD Color 
     		case GROUND_TYPES.grass:
     			sx = 0;
     			sy = 0;
@@ -54,8 +54,35 @@ render.draw = function(map) {
 
     		break;
     		case GROUND_TYPES.stone:
-    			sx = 1;
-    			sy = 0;
+                switch(tile.ground.data.overgrowth) {
+                    case 0:
+                        switch(tile.ground.data.variation) {
+                            case 0:
+                                sx = 0;
+                                sy = 3;
+                            break;
+                        }
+                    break;
+
+                    case 1:
+                        switch(tile.ground.data.variation) {
+                            case 0:
+                                sx = 1;
+                                sy = 3;
+                            break;
+                        }
+                    break;
+
+                    case 2:
+                        switch(tile.ground.data.variation) {
+                            case 0:
+                                sx = 2;
+                                sy = 3;
+                            break;
+                        }
+                    break;
+                }
+
     			scol = "gray"; //TODO!
     		break;
             case GROUND_TYPES.darkStone:
@@ -198,6 +225,20 @@ render.draw = function(map) {
                 }
                 scol = "blue";
              break;
+
+             case BUILDING_TYPES.boulders:
+                switch(tile.building.data.variation) {
+                    case 0:
+                        sx=0;
+                        sy=4;
+                    break;
+                    case 1:
+                        sx=1;
+                        sy=4;
+                    break;
+                }
+             break;
+
 
 
     		 case BUILDING_TYPES.pylon:
