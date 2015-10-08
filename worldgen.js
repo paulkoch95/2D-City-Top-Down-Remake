@@ -60,6 +60,12 @@ worldgen.createMap = function(map) {
                 if((map.tiles[x-1][y].building.data.direction == DIRECTIONS.horizontal || map.tiles[x-1][y].building.data.direction == DIRECTIONS.curve_top_right) && (map.tiles[x][y+1].building.data.direction == DIRECTIONS.vertical || map.tiles[x][y+1].building.data.direction == DIRECTIONS.curve_top_right)){
                     map.tiles[x][y].building.data.direction = DIRECTIONS.curve_right_down;
                 }
+                if(map.tiles[x-1][y].building.type == BUILDING_TYPES.river && map.tiles[x+1][y].building.type == BUILDING_TYPES.river && map.tiles[x][y+1].building.type == BUILDING_TYPES.river){
+                    map.tiles[x][y].building.data.direction = DIRECTIONS.junction_left_right_down;
+                }
+                if(map.tiles[x][y-1].building.type == BUILDING_TYPES.river && map.tiles[x][y+1].building.type == BUILDING_TYPES.river && map.tiles[x+1][y].building.type == BUILDING_TYPES.river){
+                    map.tiles[x][y].building.data.direction = DIRECTIONS.junction_top_right_down;
+                }
             }
         }
       }  
