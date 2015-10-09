@@ -36,6 +36,7 @@ window.onload = function () {
         //TODO: reset camera
 	};
 
+    Math.seedrandom('Seeds are cool.');
 
     map = {
         WIDTH: 64, HEIGHT: 64, BORDER_THICKNESS: 0,
