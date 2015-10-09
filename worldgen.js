@@ -94,10 +94,10 @@ worldgen.createMap = function(map) {
       for(var x = 0; x < map.WIDTH; x++) {
         for(var y = 0; y < map.HEIGHT; y++) {
             if (x > 0 && y > 0 && x<map.WIDTH - 1 && y<map.HEIGHT - 1){
-                if(map.tiles[x][y-1].building.data.direction == DIRECTIONS.vertical && (map.tiles[x+1][y].building.data.direction == DIRECTIONS.horizontal || map.tiles[x+1][y].building.data.direction == DIRECTIONS.vertical)){
+                if((map.tiles[x][y-1].building.data.direction == DIRECTIONS.vertical ||map.tiles[x][y-1].building.data.direction == DIRECTIONS.junction_top_right_down)&& (map.tiles[x+1][y].building.data.direction == DIRECTIONS.horizontal || map.tiles[x+1][y].building.data.direction == DIRECTIONS.vertical)){
                     map.tiles[x][y].building.data.direction = DIRECTIONS.curve_top_right;
                 }
-                if((map.tiles[x-1][y].building.data.direction == DIRECTIONS.horizontal || map.tiles[x-1][y].building.data.direction == DIRECTIONS.curve_top_right) && (map.tiles[x][y+1].building.data.direction == DIRECTIONS.vertical || map.tiles[x][y+1].building.data.direction == DIRECTIONS.curve_top_right)){
+                if((map.tiles[x-1][y].building.data.direction == DIRECTIONS.horizontal || map.tiles[x-1][y].building.data.direction == DIRECTIONS.curve_top_right) && (map.tiles[x][y+1].building.data.direction == DIRECTIONS.vertical || map.tiles[x][y+1].building.data.direction == DIRECTIONS.curve_top_right||map.tiles[x-1][y].building.data.direction == DIRECTIONS.junction_top_right_down)){
                     map.tiles[x][y].building.data.direction = DIRECTIONS.curve_right_down;
                 }
                 if(map.tiles[x-1][y].building.type == BUILDING_TYPES.river && map.tiles[x+1][y].building.type == BUILDING_TYPES.river && map.tiles[x][y+1].building.type == BUILDING_TYPES.river){
