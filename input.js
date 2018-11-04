@@ -41,6 +41,9 @@ mouse.setup = function() {
     canvas.addEventListener('click', function(evt) {
         //Remove, just for debugging:
         console.log(map.tiles[mouse.tile.x][mouse.tile.y]);
+        tileLogic.updateTile(map, mouse.tile.x, mouse.tile.y, false);
+        console.log(map.tiles[mouse.tile.x][mouse.tile.y]);
+        console.log("----------------");
     }, false);
 
     //Mouse Wheel: -TODO!
@@ -70,7 +73,8 @@ mouse.setup = function() {
     }
     
     function mouseWheelHandler(evt) {
-        camera.changeZoom(Math.min(Math.max(evt.wheelDelta, 1/1.2), 1.2));//Call camera zoom function
+        // chrome: camera.changeZoom(Math.min(Math.max(evt.deltaY, 1/1.2), 1.2));//Call camera zoom function
+        camera.changeZoom(Math.min(Math.max(evt.detail, 1/1.2), 1.2));//Call camera zoom function
     }
     canvas.addEventListener("DOMMouseScroll", mouseWheelHandler, false);
     canvas.addEventListener('mousewheel', mouseWheelHandler, false);

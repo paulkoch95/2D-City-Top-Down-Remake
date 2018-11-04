@@ -16,6 +16,10 @@ tileLogic.updateTile = function(map, x, y, recursive) {
         case BUILDING_TYPES.forest:
             tile_building_forest.update(map, x, y, recursive);//Call foresTile connective tile algor 
         break;
+
+        case BUILDING_TYPES.river:
+            tile_building_river.update(map, x, y, recursive);//Call foresTile connective tile algor 
+        break;
     }
 };
 

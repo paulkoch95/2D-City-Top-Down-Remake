@@ -184,7 +184,7 @@ render.draw = function(map) {
                              break;
                          }
                     break;
-                    case DIRECTIONS.curve_right_down:
+                    case DIRECTIONS.curve_left_down:
                         switch(tile.building.data.variation) {
                              case 0:
                                  sx=6;
@@ -216,6 +216,30 @@ render.draw = function(map) {
                              break;
                              case 1:
                                  sx=5;
+                                 sy=2;
+                             break;
+                         }
+                    break;    
+                    case DIRECTIONS.junction_top_right_left:
+                        switch(tile.building.data.variation) {
+                             case 0:
+                                 sx=8;
+                                 sy=2;
+                             break;
+                             case 1:
+                                 sx=8;
+                                 sy=2;
+                             break;
+                         }
+                    break;    
+                    case DIRECTIONS.junction_top_left_down:
+                        switch(tile.building.data.variation) {
+                             case 0:
+                                 sx=9;
+                                 sy=2;
+                             break;
+                             case 1:
+                                 sx=9;
                                  sy=2;
                              break;
                          }
