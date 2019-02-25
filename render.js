@@ -148,16 +148,18 @@ render.draw = function(map) {
              case BUILDING_TYPES.river:
                 switch(tile.building.data.direction) {
                     case DIRECTIONS.horizontal:
-                         switch(tile.building.data.variation) {
-                             case 0:
-                                 sx = 0;
-                                 sy = 2;
-                             break;
-                             case 1:
-                                 sx=1;
-                                 sy=2;
-                             break;
-                         }
+                        sx = tile.building.animations[0].getTileSheetPos().x;
+                        sy = tile.building.animations[0].getTileSheetPos().y;
+                         // switch(tile.building.data.variation) {
+                         //     case 0:
+                         //         sx = 0;
+                         //         sy = 2;
+                         //     break;
+                         //     case 1:
+                         //         sx=1;
+                         //         sy=2;
+                         //     break;
+                         // }
                     break;
 
                     case DIRECTIONS.vertical:

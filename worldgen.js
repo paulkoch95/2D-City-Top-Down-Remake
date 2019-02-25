@@ -76,7 +76,7 @@ worldgen.createMap = function(map) {
                 //placeRiver(x,y+1,0,10,split+=1);
             }else{
                 if(Math.random()<tendency){
-                    map.tiles[x][y].building = {type:BUILDING_TYPES.river,data:{direction: DIRECTIONS.horizontal,variation: Math.round(1 - (0.7 * Math.random()))}}; // TODO!
+                    map.tiles[x][y].building = {type:BUILDING_TYPES.river,data:{direction: DIRECTIONS.horizontal,variation: Math.round(1 - (0.7 * Math.random()))}, animations: [new flowingRiver()]}; // TODO!
                     currentLength++;
                     placeRiver(x+1,y,currentLength,length,tendency);
                 }else{

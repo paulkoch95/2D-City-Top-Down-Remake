@@ -19,7 +19,9 @@ DIRECTIONS = {horizontal:0,
           };
 
 
+ANIMATION_REPEAT_TYPES = {ONCE: 0, INFINITE: 1},
 
+LOGIC_TICK_DURATION = 50;
 
 
 window.onload = function () {
@@ -63,16 +65,22 @@ window.onload = function () {
 
 
     ///////////////////
-    tick();
+    render_tick();
+    setInterval(logic_tick, LOGIC_TICK_DURATION);
     ///////////////////
 };
 
-function tick() {
+function logic_tick() {
+    // console.log("LOGIC TICK");
+    logic.tick(map);
+    
+}
+function render_tick() {
     //Do cool stuff
     //console.log(mouse);
     render.draw(map);
     
-    requestAnimationFrame(tick);
+    requestAnimationFrame(render_tick);
 }
 
 
